@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
+import br.com.caelum.correios.soap.ConsumidorServicoCorreios;
 import br.com.caelum.estoque.soap.EstoqueWS;
 import br.com.caelum.estoque.soap.EstoqueWSService;
 import br.com.caelum.estoque.soap.ItemEstoque;
@@ -107,6 +108,8 @@ public class Carrinho implements Serializable {
 		this.cepDestino = novoCepDestino;
 
 		//servico web do correios aqui
+		ConsumidorServicoCorreios servicoCorreios = new ConsumidorServicoCorreios();
+		this.valorFrete = servicoCorreios.calculaFrete(novoCepDestino);
 	}
 
 	public String getCepDestino() {
