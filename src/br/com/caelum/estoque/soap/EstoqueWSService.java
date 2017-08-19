@@ -17,14 +17,14 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "EstoqueWSService", targetNamespace = "http://ws.estoque.caelum.com.br/", wsdlLocation = "http://localhost:8080/fj36-webservice/EstoqueWS?wsdl")
+@WebServiceClient(name = "EstoqueWSService", targetNamespace = "http://caelum.com.br/estoquews/v1", wsdlLocation = "http://localhost:8080/fj36-webservice/EstoqueWS?wsdl")
 public class EstoqueWSService
     extends Service
 {
 
     private final static URL ESTOQUEWSSERVICE_WSDL_LOCATION;
     private final static WebServiceException ESTOQUEWSSERVICE_EXCEPTION;
-    private final static QName ESTOQUEWSSERVICE_QNAME = new QName("http://ws.estoque.caelum.com.br/", "EstoqueWSService");
+    private final static QName ESTOQUEWSSERVICE_QNAME = new QName("http://caelum.com.br/estoquews/v1", "EstoqueWSService");
 
     static {
         URL url = null;
@@ -69,7 +69,7 @@ public class EstoqueWSService
      */
     @WebEndpoint(name = "EstoqueWSPort")
     public EstoqueWS getEstoqueWSPort() {
-        return super.getPort(new QName("http://ws.estoque.caelum.com.br/", "EstoqueWSPort"), EstoqueWS.class);
+        return super.getPort(new QName("http://caelum.com.br/estoquews/v1", "EstoqueWSPort"), EstoqueWS.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class EstoqueWSService
      */
     @WebEndpoint(name = "EstoqueWSPort")
     public EstoqueWS getEstoqueWSPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://ws.estoque.caelum.com.br/", "EstoqueWSPort"), EstoqueWS.class, features);
+        return super.getPort(new QName("http://caelum.com.br/estoquews/v1", "EstoqueWSPort"), EstoqueWS.class, features);
     }
 
     private static URL __getWsdlLocation() {

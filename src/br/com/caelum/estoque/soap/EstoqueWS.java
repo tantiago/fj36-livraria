@@ -1,14 +1,12 @@
 
 package br.com.caelum.estoque.soap;
 
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 
 /**
@@ -17,7 +15,8 @@ import javax.xml.ws.ResponseWrapper;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "EstoqueWS", targetNamespace = "http://ws.estoque.caelum.com.br/")
+@WebService(name = "EstoqueWS", targetNamespace = "http://caelum.com.br/estoquews/v1")
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
     ObjectFactory.class
 })
@@ -26,16 +25,17 @@ public interface EstoqueWS {
 
     /**
      * 
-     * @param codigo
+     * @param tokenUsuario
+     * @param parameters
      * @return
-     *     returns java.util.List<br.com.caelum.estoque.soap.ItemEstoque>
+     *     returns br.com.caelum.estoque.soap.ItensPeloCodigoResponse
      */
     @WebMethod(operationName = "ItensPeloCodigo")
-    @WebResult(name = "ItemEstoque", targetNamespace = "")
-    @RequestWrapper(localName = "ItensPeloCodigo", targetNamespace = "http://ws.estoque.caelum.com.br/", className = "br.com.caelum.estoque.soap.ItensPeloCodigo")
-    @ResponseWrapper(localName = "ItensPeloCodigoResponse", targetNamespace = "http://ws.estoque.caelum.com.br/", className = "br.com.caelum.estoque.soap.ItensPeloCodigoResponse")
-    public List<ItemEstoque> itensPeloCodigo(
-        @WebParam(name = "codigo", targetNamespace = "")
-        List<String> codigo);
+    @WebResult(name = "ItensPeloCodigoResponse", targetNamespace = "http://caelum.com.br/estoquews/v1", partName = "parameters")
+    public ItensPeloCodigoResponse itensPeloCodigo(
+        @WebParam(name = "ItensPeloCodigo", targetNamespace = "http://caelum.com.br/estoquews/v1", partName = "parameters")
+        ItensPeloCodigo parameters,
+        @WebParam(name = "tokenUsuario", targetNamespace = "http://caelum.com.br/estoquews/v1", header = true, partName = "tokenUsuario")
+        String tokenUsuario);
 
 }
