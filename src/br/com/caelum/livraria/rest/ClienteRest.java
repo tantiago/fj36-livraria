@@ -42,7 +42,7 @@ public class ClienteRest implements Serializable {
 		Link linkConfirmar = pagamento.getLinkPeloRel("confirmar");
 		Client cliente = ClientBuilder.newClient();
 		
-		Pagamento resposta = cliente.target(SERVER_URI + ENTRY_POINT)
+		Pagamento resposta = cliente.target(SERVER_URI + linkConfirmar.getUri())
 									.request()
 									.build(linkConfirmar.getMethod())
 									.invoke(Pagamento.class);
