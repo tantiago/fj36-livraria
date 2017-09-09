@@ -14,13 +14,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.caelum.livraria.modelo.Carrinho;
 import br.com.caelum.livraria.modelo.Formato;
 import br.com.caelum.livraria.modelo.Livro;
-import br.com.caelum.livraria.modelo.Pagamento;
 import br.com.caelum.livraria.modelo.Pedido;
+import br.com.caelum.livraria.rest.oauth2.AccessToken;
 
 @Controller
 @RequestMapping("/carrinho")
 @Scope("request")
 public class CarrinhoController{
+	
+	@Autowired
+	private AccessToken accessToken;
 	
 	private static final String JSP_CARRINHO_CONFIRMAR = "carrinho/confirmarPagamento";
 	private static final String JSP_CARRINHO_LISTAR = "carrinho/listar";
@@ -79,6 +82,9 @@ public class CarrinhoController{
 			return REDIRECT_CARRINHO_LISTAR;
 		}
         // Aqui fica o código de verificação do access token
+        if(!accessToken.isPreenchido()) {
+        	return "redirect:/oauth/password/form";
+        }
         
 
 		this.carrinho.criarPagamento(numeroCartao, titularCartao);
